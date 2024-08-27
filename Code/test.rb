@@ -5,6 +5,10 @@
 #"4218414243".each_byte {|x| puts x.to_s(24)}
 
 
-bin = File.read("test3.bmp")
+bin = File.read("code/test3.bmp")
 hex = bin.unpack("H*").first
 puts hex
+
+bamse = File.open('writing.bmp', 'w')
+bamse.puts(hex)
+bamse.close
