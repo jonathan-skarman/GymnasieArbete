@@ -8,3 +8,4 @@
 bin = File.read("test3.bmp")
 hex = bin.unpack("H*").first
 puts hex
+#reads image file and prints in terminal as hex
