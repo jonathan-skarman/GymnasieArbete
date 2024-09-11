@@ -5,19 +5,20 @@
 #"4218414243".each_byte {|x| puts x.to_s(24)}
 
 
-bin = File.read("test3.bmp")
+bin = File.read("sixteenbitone.bmp")
 hex = bin.unpack("H*").first
-puts hex
+#puts hex
 #reads image file and prints in terminal as hex
-
+puts "Hex längden"
+puts hex.length
 i = 0
 hex_array = []
 hex_array[0] = hex
-p hex_array
+#p hex_array
 
 puts "Converting back now"
 
-p back_bin = hex_array.pack('H*')
+back_bin = hex_array.pack('H*')
 p back_bin
 
 bamse = File.open('writing.bmp', 'w')
