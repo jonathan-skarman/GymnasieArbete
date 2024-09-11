@@ -1,0 +1,9 @@
+least significant bit - ändra sista bit i varje byte
+
+
+
+bara rakt av i hex
+
+
+
+gömma i slösad data i bmp
