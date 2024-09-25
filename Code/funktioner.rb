@@ -8,7 +8,21 @@ end
 #Hex to bin
 #"\xff\x00".unpack("b*") # => ["1111111100000000"]
 def hex_to_bin(hex_str)
-	bin_str = hex_str.unpack("b*")
+	bin_arr_str = hex_str.unpack("b*") #gives an array with only one string
+
+	#untested
+	bin_arr = []
+	i = 0
+	k = 0
+	while i < bin_arr_str[0].length
+		j = 0
+		while j < 8
+			bin_arr[k] += bin_arr_str[0][i]
+			j += 1
+			i += 1
+		end
+		k += 1
+	end
 end
 
 #Bin to hex
@@ -31,20 +45,24 @@ def img_to_hex(search_path)
 	read = File.read(search_path)
 end
 
-
 #str_bin is the string to be hidden in the image
 #img_bin is the binare data of the image
-#aggresiveness is an integer between 1 and 8, that decides how many bits to change in each byte
-def hider(str_bin, img_bin, aggresiveness)
+#aggression is an integer between 1 and 8, that decides how many bits to change in each byte
+def hider(str_bin, img_bin, aggression)
 end
+
+def main(text_str, img_search_path, aggression)
+	hex_to_img(bin_to_hex(hider(str_to_bin, hex_to_bin(img_to_hex(img_search_path)), aggression)))
+end
+
+
+
+
+
+
 
 #p hex_to_bin("HEASFS")
 #p str_to_bin("FF")
-
-
-
-
-
 
 #Test skrivning av läsa in och skriva (FUNKAR)
 =begin
