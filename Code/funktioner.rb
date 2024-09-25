@@ -15,9 +15,7 @@ end
 #['11111111' + '00000000'].pack('b*') # => "\xFF\x00"
 def bin_to_hex(bin_arr)
 	bin_str = [""]
-	bin_arr.each do |bin_number|
-		bin_str[0] += bin_number
-	end
+	bin_arr.each do {|bin_number| bin_str[0] += bin_number}
 	hex_str = bin_str.pack("b*")
 end
 
@@ -37,7 +35,7 @@ def hider()
 end
 
 #p hex_to_bin("HEASFS")
-p str_to_bin("FF")
+#p str_to_bin("FF")
 
 
 
