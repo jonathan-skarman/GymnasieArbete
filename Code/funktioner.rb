@@ -31,7 +31,11 @@ def img_to_hex(search_path)
 	read = File.read(search_path)
 end
 
-def hider()
+
+#str_bin is the string to be hidden in the image
+#img_bin is the binare data of the image
+#aggresiveness is an integer between 1 and 8, that decides how many bits to change in each byte
+def hider(str_bin, img_bin, aggresiveness)
 end
 
 #p hex_to_bin("HEASFS")
