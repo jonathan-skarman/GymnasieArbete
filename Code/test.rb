@@ -5,7 +5,7 @@
 #"4218414243".each_byte {|x| puts x.to_s(24)}
 
 
-bin = File.read("sixteenbitone.bmp")
+bin = File.read("sixteenbit.bmp")
 hex = bin.unpack("H*").first
 #puts hex
 #reads image file and prints in terminal as hex
