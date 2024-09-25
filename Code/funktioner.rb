@@ -1,3 +1,6 @@
+#Bästa dokumentationen någonsin
+#https://docs.ruby-lang.org/en/master/packed_data_rdoc.html#label-Hex+String+Directives 
+
 #Str to bin
 def str_to_bin(str)
 	arr = str.bytes
