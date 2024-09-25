@@ -12,8 +12,6 @@ end
 #"\xff\x00".unpack("b*") # => ["1111111100000000"]
 def hex_to_bin(hex_str)
 	bin_arr_str = hex_str.unpack("b*") #gives an array with only one string
-
-	#untested
 	bin_arr = []
 	i = 0
 	k = 0
@@ -22,7 +20,6 @@ def hex_to_bin(hex_str)
 		temp = ""
 		while j < 8
 			temp += bin_arr_str[0][i]
-			#bin_arr[k] += bin_arr_str[0][i]
 			j += 1
 			i += 1
 		end
