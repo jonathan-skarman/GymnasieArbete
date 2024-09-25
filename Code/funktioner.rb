@@ -19,20 +19,24 @@ def hex_to_bin(hex_str)
 	k = 0
 	while i < bin_arr_str[0].length
 		j = 0
+		temp = ""
 		while j < 8
-			bin_arr[k] += bin_arr_str[0][i]
+			temp += bin_arr_str[0][i]
+			#bin_arr[k] += bin_arr_str[0][i]
 			j += 1
 			i += 1
 		end
+		bin_arr << temp
 		k += 1
 	end
+	return bin_arr
 end
 
 #Bin to hex
 #['11111111' + '00000000'].pack('b*') # => "\xFF\x00"
 def bin_to_hex(bin_arr)
 	bin_str = [""]
-	bin_arr.each do {|bin_number| bin_str[0] += bin_number}
+	bin_arr.each {|bin_number| bin_str[0] += bin_number}
 	hex_str = bin_str.pack("b*")
 end
 
@@ -59,7 +63,7 @@ def main(text_str, img_search_path, aggression)
 end
 
 
-
+#p hex_to_bin("\xFF\x00")
 
 
 
