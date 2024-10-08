@@ -88,5 +88,10 @@ def main(text_str, input_search_path, aggression, output_search_path)
 end
 
 #puts "hej"
+start = Time.now
 
-main("", "smiley.bmp", 8, "hider.bmp")#Agg(1-8)
+main("Jag heter Bamse och gillar dunderhonung", "smiley.bmp", 8, "hider.bmp")#Agg(1-8)
+
+ending = Time.now
+
+puts ending - start
