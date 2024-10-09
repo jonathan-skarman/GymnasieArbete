@@ -1,5 +1,5 @@
-#Str to bin
-def str_to_bin(str)
+#txt_str to bin_str
+def txt_to_bin(str)
 	p "string to bin"
 	arr = str.bytes
 	arr.each_index {|index| arr[index] = "0" + (arr[index].to_i).to_s(2)}
@@ -8,7 +8,7 @@ def str_to_bin(str)
 	str
 end
 
-#Hex to bin
+#hex_str to bin_arr
 #"\xff\x00".unpack("b*") # => ["1111111100000000"]
 def hex_to_bin(hex_str)
 	p "hex to bin"
@@ -30,25 +30,24 @@ def hex_to_bin(hex_str)
 	return bin_arr
 end
 
-#Bin to hex
+#bin_arr to hex_str
 #['11111111' + '00000000'].pack('b*') # => "\xFF\x00"
 def bin_to_hex(bin_arr)
 	p "bin to hex"
-	p "tar lång tid"
 	bin_str = [""]
 	bin_str[0] = bin_arr.join
-	#bin_arr.each {|bin_number| bin_str[0] += bin_number} #Denna tar lång tid
 	p "packing"
 	hex_str = bin_str.pack("b*")
 end
 
+#hex_str formatter for packing to img
 def hex_to_img_formater(hex_str_input)
 	p "hex formater"
 	hex_str_output = ""
 	hex_str_output = hex_str_input
 end
 
-#Hex to img
+#formated hex_str to img
 def hex_to_img(hex_str, search_path)
 	p "writing"
 	write = File.open(search_path, 'w')
@@ -56,42 +55,81 @@ def hex_to_img(hex_str, search_path)
 	write.close
 end
 
-#Img to hex
+#Img to hex_str
 def img_to_hex(search_path)
 	read = File.read(search_path)
+end
+
+def bin_arr_to_bin_str(bin_arr)
+	bin_str = bin_arr.join
+end
+
+#Bin_str to text_str
+def bin_to_txt(bin_arr)
+	s = bin_arr
+
+	#p bin_str
+
+	#s = "10110010"#01011010000000000000000000000000000000000000000000000000000000000110110000000000000000000000000000010100000000000000000000000000110000000000000000000000000000001100000000000000000000000000000010000000000000000001100000000000000000000000000000000000000000000010010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111001100101000110101000100011111110111111101111111111111111111111111111111001001000011100010110111111111111111111111111111000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111000000000000000000000000"
+	#s = "010011010101010101011010"
+	(0..s.length-8).step(8) do |i|
+		print s[i,8].to_i(base=2).chr
+	end
+	puts
 end
 
 #str_bin is the string to be hidden in the image
 #img_bin_arr is the binare data of the image, with each bit in an array
 #aggression is an integer between 1 and 8, that decides how many bits to change in each byte
-def hider(str_bin, img_bin_arr, aggression)
+def hider(txt_bin, img_bin_arr, aggression)
 	p "hider"
 	#kolla om sträng får plats här!
 
-	#i = 0
-	#img_bin_arr.each {|byte| byte[7] = str_bin[i]; i+=1}
-
-
-	#str_bin = "1010"
 	i = 40
 	j = 0
-	while i < img_bin_arr.length && str_bin[j] != nil
-		img_bin_arr[i][0] = str_bin[j]
+	while i < img_bin_arr.length && txt_bin[j] != nil
+		img_bin_arr[i][3] = txt_bin[j]
+		#0 is cyan pixels
+		#1 is magenta
+		#2 is yellow
+		#3 is gray
+		#then it repeats
 		i += 1
 		j += 1
 	end
 	img_bin_arr
 end
 
-def main(text_str, input_search_path, aggression, output_search_path)
-	hex_to_img(hex_to_img_formater(bin_to_hex(hider(str_to_bin(text_str), hex_to_bin(img_to_hex(input_search_path)), aggression))), output_search_path)
+def searcher(bin_arr)
+	i = 40
+	str = ""
+
+	while i < bin_arr.length
+		str += bin_arr[i][3]
+		i += 1
+	end
+
+	str
+end
+
+#inga mellanslag i text_str, eller konstiga tecken, eller åäö
+def main_hider(text_str, input_img_search_path, aggression, output_img_search_path)
+	hex_to_img(hex_to_img_formater(bin_to_hex(hider(txt_to_bin(text_str), hex_to_bin(img_to_hex(input_img_search_path)), aggression))), output_img_search_path)
 	p "Exited successfully"
 end
 
-#puts "hej"
+def main_decoder(img_search_path)
+	bin_to_txt(searcher(hex_to_bin(img_to_hex(img_search_path))))
+end
+
+
+
 start = Time.now
 
-main("Jag heter Bamse och gillar dunderhonung", "Images/smiley.bmp", 8, "Images/speedtest2.bmp")#Agg(1-8)
+main_hider("HejaBamseVarldensBastaBamse", "Images/smile.bmp", 8, "Images/test.bmp")#Agg(1-8)
+p main_decoder("Images/test.bmp")
+
+#bin_to_txt(txt_to_bin("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
 
 ending = Time.now
 
