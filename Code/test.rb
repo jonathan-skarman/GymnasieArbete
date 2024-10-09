@@ -39,3 +39,10 @@ while i < hex.length
 end
 p hex_array
 =end
+
+
+def bin_to_hex(bin_arr)
+	bin_str = [""]
+	bin_arr.each {|bin_number| bin_str[0] += bin_number} #Denna tar lång tid
+	hex_str = bin_str.pack("b*")
+end

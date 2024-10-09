@@ -36,6 +36,7 @@ def bin_to_hex(bin_arr)
 	p "bin to hex"
 	p "tar lång tid"
 	bin_str = [""]
+	#bin_str[0] = bin_arr.join
 	bin_arr.each {|bin_number| bin_str[0] += bin_number} #Denna tar lång tid
 	p "packing"
 	hex_str = bin_str.pack("b*")
@@ -90,7 +91,7 @@ end
 #puts "hej"
 start = Time.now
 
-main("Jag heter Bamse och gillar dunderhonung", "smiley.bmp", 8, "hider.bmp")#Agg(1-8)
+main("Jag heter Bamse och gillar dunderhonung", "Images/test3.bmp", 8, "Images/hider.bmp")#Agg(1-8)
 
 ending = Time.now
 
