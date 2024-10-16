@@ -78,34 +78,51 @@ def bin_to_txt(bin_arr)
 	puts
 end
 
+def size_verifier(txt_bin, img_bin_arr, aggression)
+	p "verifier"
+
+
+	p (img_bin_arr.length - $start_position) * aggression
+	p txt_bin.length
+
+	if ((img_bin_arr.length - $start_position) * aggression) < txt_bin.length
+		raise "fml AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhh"
+	end
+
+	true
+end
+
 #str_bin is the string to be hidden in the image
 #img_bin_arr is the binare data of the image, with each bit in an array
 #aggression is an integer between 1 and 8, that decides how many bits to change in each byte
 def hider(txt_bin, img_bin_arr, aggression)
 	p "hider"
-	#kolla om sträng får plats här!
 
-	i = 40
+	size_verifier(txt_bin, img_bin_arr, aggression)
+
+
+	i = $start_position
 	j = 0
+	p txt_bin
 	while i < img_bin_arr.length && txt_bin[j] != nil
-		img_bin_arr[i][3] = txt_bin[j]
+		img_bin_arr[i][(0..(aggression-1))] = txt_bin[(j..(j+aggression-1))]
 		#0 is cyan pixels
 		#1 is magenta
 		#2 is yellow
 		#3 is gray
 		#then it repeats
 		i += 1
-		j += 1
+		j += aggression
 	end
 	img_bin_arr
 end
 
 def searcher(bin_arr)
-	i = 40
+	i = $start_position
 	str = ""
 
 	while i < bin_arr.length
-		str += bin_arr[i][3]
+		str += bin_arr[i][(0..($aggression-1))]
 		i += 1
 	end
 
@@ -122,12 +139,23 @@ def main_decoder(img_search_path)
 	bin_to_txt(searcher(hex_to_bin(img_to_hex(img_search_path))))
 end
 
+$start_position = 40
+$input_img_search_path = "Images/smile.bmp"
+$input_text = "BamseGillarDunderHonung"
+$output_img_search_path = "Images/test.bmp"
+$aggression = 3
+
+#33 made not functioning img from smile.bmp
+#32 made not functioning img from smiley.bmp
+
+#$input_img_search_path = "Images/Skärmklipp.bmp"
+
 
 
 start = Time.now
 
-main_hider("HejaBamseVarldensBastaBamse", "Images/smile.bmp", 8, "Images/test.bmp")#Agg(1-8)
-p main_decoder("Images/test.bmp")
+main_hider($input_text, $input_img_search_path, $aggression, $output_img_search_path)#Agg(1-8)
+p main_decoder($output_img_search_path)
 
 #bin_to_txt(txt_to_bin("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
 
