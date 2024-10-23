@@ -17,6 +17,7 @@ def hex_to_bin(hex_str)
 	i = 0
 	k = 0
 	while i < bin_arr_str[0].length
+		#p i
 		j = 0
 		temp = ""
 		while j < 8
@@ -53,6 +54,7 @@ def hex_to_img(hex_str, search_path)
 	write = File.open(search_path, 'w')
 	write.puts(hex_str)
 	write.close
+
 end
 
 #Img to hex_str
@@ -104,10 +106,11 @@ def hider(txt_bin, img_bin_arr, aggression)
 	j = 0
 	#p txt_bin
 	while i < img_bin_arr.length && txt_bin[j+(aggression-1)] != nil
-		p "img bin arr: #{img_bin_arr[i][(0..(aggression-1))]}"
+		p "img bin arr: #{img_bin_arr[i]}"
 		p "txt bin: #{txt_bin[(j..(j+(aggression-1)))]}"
+		#baclwards for curse: img_bin_arr[i][((aggression-1)..0)] = txt_bin[(j..(j+(aggression-1)))]
 		img_bin_arr[i][(0..(aggression-1))] = txt_bin[(j..(j+(aggression-1)))]
-		p "img bin arr after: #{img_bin_arr[i][(0..(aggression-1))]}"
+		p "img bin arr after: #{img_bin_arr[i]}"
 		#0 is cyan pixels
 		#1 is magenta
 		#2 is yellow
@@ -120,6 +123,7 @@ def hider(txt_bin, img_bin_arr, aggression)
 end
 
 def searcher(bin_arr)
+	puts "Searching"
 	i = $start_position
 	str = ""
 
@@ -141,11 +145,11 @@ def main_decoder(img_search_path)
 	bin_to_txt(searcher(hex_to_bin(img_to_hex(img_search_path))))
 end
 
-$start_position = 39
-$input_img_search_path = "Images/smile.bmp"
-$input_text = "BamseGillarDunderHonung"
+$start_position = 100
+$input_img_search_path = "Images/24smile.bmp"
+$input_text = "BamseGillarDunderHonungochhangillarmormorsahimlamycketforatthonarsnall"
 $output_img_search_path = "Images/test.bmp"
-$aggression = 3
+$aggression = 8
 
 #33 made not functioning img from smile.bmp
 #32 made not functioning img from smiley.bmp
@@ -157,10 +161,15 @@ $aggression = 3
 start = Time.now
 
 main_hider($input_text, $input_img_search_path, $aggression, $output_img_search_path)#Agg(1-8)
+mid_point = Time.now
+
 p main_decoder($output_img_search_path)
 
 #bin_to_txt(txt_to_bin("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
 
 ending = Time.now
+puts "Skriva"
+puts mid_point - start
 
-puts ending - start
+puts "Läsa"
+puts ending - mid_point
