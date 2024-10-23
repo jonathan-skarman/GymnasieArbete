@@ -104,7 +104,7 @@ def hider(txt_bin, img_bin_arr, aggression)
 	j = 0
 	#p txt_bin
 	while i < img_bin_arr.length && txt_bin[j+(aggression-1)] != nil
-		img_bin_arr[i][(0..(aggression-1))] = txt_bin[(j..(j+aggression-1))]
+		img_bin_arr[i][(0..(aggression-1))] = txt_bin[(j..(j+(aggression-1)))]
 		#0 is cyan pixels
 		#1 is magenta
 		#2 is yellow
