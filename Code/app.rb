@@ -143,7 +143,7 @@ $start_position = 40
 $input_img_search_path = "Images/smile.bmp"
 $input_text = "BamseGillarDunderHonung"
 $output_img_search_path = "Images/test.bmp"
-$aggression = 3
+$aggression = 8
 
 #33 made not functioning img from smile.bmp
 #32 made not functioning img from smiley.bmp
