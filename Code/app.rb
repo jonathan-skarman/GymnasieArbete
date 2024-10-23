@@ -140,10 +140,10 @@ def main_decoder(img_search_path)
 end
 
 $start_position = 40
-$input_img_search_path = "Images/smile.bmp"
+$input_img_search_path = "Images/fourkfatyoshi.bmp"
 $input_text = "BamseGillarDunderHonung"
 $output_img_search_path = "Images/test.bmp"
-$aggression = 8
+$aggression = 1
 
 #33 made not functioning img from smile.bmp
 #32 made not functioning img from smiley.bmp
