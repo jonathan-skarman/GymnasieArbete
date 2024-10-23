@@ -100,11 +100,10 @@ def hider(txt_bin, img_bin_arr, aggression)
 
 	size_verifier(txt_bin, img_bin_arr, aggression)
 
-
 	i = $start_position
 	j = 0
-	p txt_bin
-	while i < img_bin_arr.length && txt_bin[j] != nil
+	#p txt_bin
+	while i < img_bin_arr.length && txt_bin[j+(aggression-1)] != nil
 		img_bin_arr[i][(0..(aggression-1))] = txt_bin[(j..(j+aggression-1))]
 		#0 is cyan pixels
 		#1 is magenta
@@ -139,7 +138,7 @@ def main_decoder(img_search_path)
 	bin_to_txt(searcher(hex_to_bin(img_to_hex(img_search_path))))
 end
 
-$start_position = 40
+$start_position = 39
 $input_img_search_path = "Images/smile.bmp"
 $input_text = "BamseGillarDunderHonung"
 $output_img_search_path = "Images/test.bmp"
