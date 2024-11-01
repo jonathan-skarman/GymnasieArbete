@@ -1,0 +1,44 @@
+p txt_to_bin($break_line)
+        p str[((i - 1) - 7)..(i - 1)]
+        p i
+        p "apa"
+        p bin_to_txt(str[(i - 8)..i])
+        sleep(1)
+        if str[(i - 8)..i] == txt_to_bin($break_line)
+            return true
+
+            while i < bin_arr.length
+		str += bin_arr[i][(0..($aggression-1))]
+		i += 1
+        j += $aggression
+        if j % 8 == 0
+            p bin_to_txt(str)
+            puts "DATORER"
+            p txt_to_bin($input_text)
+            sleep(0.5)
+            if txt_found(str) == true
+                return str
+            end
+        end
+
+
+        def txt_found(str)
+    i = 0
+    while i < str.length
+        #sleep(2)
+        
+        p txt_to_bin($break_line)
+        p str[i..(i + 7)]
+        p i
+        p "apa"
+        p bin_to_txt(str[i..(i + 7)])
+        puts "trams"
+        p str
+        #sleep(0.1)
+        if str[i..(i + 7)] == txt_to_bin($break_line)
+            p str
+            return true
+        end
+        i += 8
+    end
+    p bin_to_txt(str)

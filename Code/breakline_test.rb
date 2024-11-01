@@ -28,8 +28,6 @@ def hex_to_bin(hex_str)
 		bin_arr << temp
 		k += 1
 	end
-	p bin_arr[0..240]
-    sleep(5)
 	return bin_arr
 end
 
@@ -86,8 +84,8 @@ def size_verifier(txt_bin, img_bin_arr, aggression)
 	p "verifier"
 
 
-	p (img_bin_arr.length - $start_position) * aggression
-	p txt_bin.length
+	#p (img_bin_arr.length - $start_position) * aggression
+	#p txt_bin.length
 
 	if ((img_bin_arr.length - $start_position) * aggression) < txt_bin.length
 		raise "fml AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhh"
@@ -108,11 +106,11 @@ def hider(txt_bin, img_bin_arr, aggression)
 	j = 0
 	#p txt_bin
 	while i < img_bin_arr.length && txt_bin[j+(aggression-1)] != nil
-		p "img bin arr: #{img_bin_arr[i]}"
-		p "txt bin: #{txt_bin[(j..(j+(aggression-1)))]}"
+		#p "img bin arr: #{img_bin_arr[i]}"
+		#p "txt bin: #{txt_bin[(j..(j+(aggression-1)))]}"
 		#baclwards for curse: img_bin_arr[i][((aggression-1)..0)] = txt_bin[(j..(j+(aggression-1)))]
 		img_bin_arr[i][(0..(aggression-1))] = txt_bin[(j..(j+(aggression-1)))]
-		p "img bin arr after: #{img_bin_arr[i]}"
+		#p "img bin arr after: #{img_bin_arr[i]}"
 		#0 is cyan pixels
 		#1 is magenta
 		#2 is yellow
@@ -127,14 +125,57 @@ end
 def searcher(bin_arr)
 	puts "Searching"
 	i = $start_position
+    j = 0 #j amount of full bytes found
 	str = ""
 
 	while i < bin_arr.length
 		str += bin_arr[i][(0..($aggression-1))]
+        #puts "uranium"
+        #p bin_arr[i]
+        #p str
+        #sleep(1)
 		i += 1
+        if str.length % 8 == 0
+            p bin_to_txt(str)
+            puts "DATORER"
+            p txt_to_bin($input_text)
+            sleep(0.5)
+            if txt_found(str) == true
+                return str
+            end
+        end
 	end
+    raise "Break key not found"
+	#str
+end
+#str[((str.length - 8)..(str.length))]
 
-	str
+# Aggression 5 och 7 fungerar inte... alla de andra fungerar
+# Varför fungerar den inte? Jooo!! Break_line karaktären finns inte i binär i strängen...
+# Den finns, men skrivs in eller läses av som något annat
+# En 0 försvinner och blir en 1 där breaklinens binär borde vara
+def txt_found(str)
+    i = 0
+    while i < str.length
+        #sleep(2)
+        
+        p txt_to_bin($break_line)
+        p str[i..(i + 7)]
+        p i
+        p "apa"
+        p bin_to_txt(str[i..(i + 7)])
+        puts "trams"
+        p str
+        #sleep(0.1)
+        if str[i..(i + 7)] == txt_to_bin($break_line)
+            p str
+            return true
+        end
+        i += 8
+    end
+    p bin_to_txt(str)
+    #sleep(3)
+    return false
 end
 
 #inga mellanslag i text_str, eller konstiga tecken, eller åäö
@@ -149,9 +190,13 @@ end
 
 $start_position = 100
 $input_img_search_path = "Images/smile3byte.bmp"
-$input_text = "BamseGillarDunderHonungochhangillarmormorsahimlamycketforatthonarsnall"
+$input_text = "BamseGillarDunderHonung"
+$break_line = "~bamsegillardi~"
 $output_img_search_path = "Images/test.bmp"
 $aggression = 5
+
+#lägger ihop break_line karaktären med texten
+$input_text += $break_line 
 
 #33 made not functioning img from smile.bmp
 #32 made not functioning img from smiley.bmp
