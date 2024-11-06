@@ -139,7 +139,7 @@ def searcher(bin_arr)
             p bin_to_txt(str)
             puts "DATORER"
             p txt_to_bin($input_text)
-            sleep(0.5)
+                sleep(0.5)
             if txt_found(str) == true
                 return str
             end
@@ -193,7 +193,7 @@ $input_img_search_path = "Images/smile3byte.bmp"
 $input_text = "BamseGillarDunderHonung"
 $break_line = "~bamsegillardi~"
 $output_img_search_path = "Images/test.bmp"
-$aggression = 5
+$aggression = 8
 
 #lägger ihop break_line karaktären med texten
 $input_text += $break_line 
