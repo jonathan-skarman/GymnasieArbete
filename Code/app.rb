@@ -147,7 +147,7 @@ def main_decoder(img_search_path)
 	bin_to_txt(searcher(hex_to_bin(img_to_hex(img_search_path))))
 end
 
-$start_position = 100
+$start_position = 40
 $input_img_search_path = "Images/smile3byte.bmp"
 $input_text = "BamseGillarDunderHonungochhangillarmormorsahimlamycketforatthonarsnall"
 $output_img_search_path = "Images/test.bmp"

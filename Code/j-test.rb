@@ -15,9 +15,8 @@ def hex_to_bin(hex_str)
 	bin_arr_str = hex_str.unpack("b*") #gives an array with only one string
 	bin_arr = []
 	i = 0
-	k = 0
+	#k = 0
 	while i < bin_arr_str[0].length
-		#p i
 		j = 0
 		temp = ""
 		while j < 8
@@ -26,10 +25,10 @@ def hex_to_bin(hex_str)
 			i += 1
 		end
 		bin_arr << temp
-		k += 1
+		#k += 1
 	end
-	p bin_arr[0..240]
-    sleep(5)
+	#p bin_arr[0..240]
+    #sleep(5)
 	return bin_arr
 end
 
@@ -86,8 +85,8 @@ def size_verifier(txt_bin, img_bin_arr, aggression)
 	p "verifier"
 
 
-	p (img_bin_arr.length - $start_position) * aggression
-	p txt_bin.length
+	#p (img_bin_arr.length - $start_position) * aggression
+	#p txt_bin.length
 
 	if ((img_bin_arr.length - $start_position) * aggression) < txt_bin.length
 		raise "fml AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhh"
@@ -101,6 +100,8 @@ end
 #aggression is an integer between 1 and 8, that decides how many bits to change in each byte
 def hider(txt_bin, img_bin_arr, aggression)
 	p "hider"
+	txt_bin += $break_line
+	p txt_bin
 
 	size_verifier(txt_bin, img_bin_arr, aggression)
 
@@ -108,11 +109,11 @@ def hider(txt_bin, img_bin_arr, aggression)
 	j = 0
 	#p txt_bin
 	while i < img_bin_arr.length && txt_bin[j+(aggression-1)] != nil
-		p "img bin arr: #{img_bin_arr[i]}"
-		p "txt bin: #{txt_bin[(j..(j+(aggression-1)))]}"
+		#p "img bin arr: #{img_bin_arr[i]}"
+		#p "txt bin: #{txt_bin[(j..(j+(aggression-1)))]}"
 		#baclwards for curse: img_bin_arr[i][((aggression-1)..0)] = txt_bin[(j..(j+(aggression-1)))]
 		img_bin_arr[i][(0..(aggression-1))] = txt_bin[(j..(j+(aggression-1)))]
-		p "img bin arr after: #{img_bin_arr[i]}"
+		#p "img bin arr after: #{img_bin_arr[i]}"
 		#0 is cyan pixels
 		#1 is magenta
 		#2 is yellow
@@ -121,20 +122,50 @@ def hider(txt_bin, img_bin_arr, aggression)
 		i += 1
 		j += aggression
 	end
+	p img_bin_arr
 	img_bin_arr
 end
 
 def searcher(bin_arr)
 	puts "Searching"
+
 	i = $start_position
-	str = ""
+	str_temp = ""
+
+	j = 0
+	str_temp_2 = ""
+
+	arr_temp = []
+
 
 	while i < bin_arr.length
-		str += bin_arr[i][(0..($aggression-1))]
+		str_temp += bin_arr[i][(0..($aggression-1))]
 		i += 1
+		#p str_temp.length
+
+		#todo: fixa så den fungerar med alla aggression
+		while j < str_temp.length
+			str_temp_2 += str_temp[j]
+
+			if str_temp_2.length % 8 == 0
+				arr_temp.append(str_temp_2)
+				#p arr_temp[arr_temp.length - 1]
+				if is_breakline(arr_temp[arr_temp.length - 1])
+					return arr_temp.join
+				end
+				str_temp_2 = ""
+			end
+
+			j += 1
+		end
 	end
 
+	str = arr_temp.join
 	str
+end
+
+def is_breakline(bin_str)
+	bin_str == $break_line
 end
 
 #inga mellanslag i text_str, eller konstiga tecken, eller åäö
@@ -147,11 +178,12 @@ def main_decoder(img_search_path)
 	bin_to_txt(searcher(hex_to_bin(img_to_hex(img_search_path))))
 end
 
-$start_position = 100
-$input_img_search_path = "Images/smile3byte.bmp"
-$input_text = "BamseGillarDunderHonungochhangillarmormorsahimlamycketforatthonarsnall"
+$start_position = 40
+$input_img_search_path = "Images/16x16.bmp"
+$input_text = "a"
 $output_img_search_path = "Images/test.bmp"
-$aggression = 5
+$aggression = 3
+$break_line = "01111111"
 
 #33 made not functioning img from smile.bmp
 #32 made not functioning img from smiley.bmp
