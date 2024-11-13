@@ -84,10 +84,6 @@ end
 def size_verifier(txt_bin, img_bin_arr, aggression)
 	p "verifier"
 
-
-	#p (img_bin_arr.length - $start_position) * aggression
-	#p txt_bin.length
-
 	if ((img_bin_arr.length - $start_position) * aggression) < txt_bin.length
 		raise "fml AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhh"
 	end
@@ -101,28 +97,22 @@ end
 def hider(txt_bin, img_bin_arr, aggression)
 	p "hider"
 	txt_bin += $break_line
-	p txt_bin
 
 	size_verifier(txt_bin, img_bin_arr, aggression)
 
 	i = $start_position
 	j = 0
-	#p txt_bin
 	while i < img_bin_arr.length && txt_bin[j+(aggression-1)] != nil
-		#p "img bin arr: #{img_bin_arr[i]}"
-		#p "txt bin: #{txt_bin[(j..(j+(aggression-1)))]}"
-		#baclwards for curse: img_bin_arr[i][((aggression-1)..0)] = txt_bin[(j..(j+(aggression-1)))]
 		img_bin_arr[i][(0..(aggression-1))] = txt_bin[(j..(j+(aggression-1)))]
-		#p "img bin arr after: #{img_bin_arr[i]}"
-		#0 is cyan pixels
-		#1 is magenta
-		#2 is yellow
-		#3 is gray
-		#then it repeats
 		i += 1
 		j += aggression
 	end
-	p img_bin_arr
+
+	if j < txt_bin.length
+		num = txt_bin.length - j
+		img_bin_arr[i][(0..(num-1))] = txt_bin[(j..(j+num-1))]
+	end
+
 	img_bin_arr
 end
 
@@ -150,7 +140,7 @@ def searcher(bin_arr)
 			if str_temp_2.length % 8 == 0
 				arr_temp.append(str_temp_2)
 				#p arr_temp[arr_temp.length - 1]
-				if is_breakline(arr_temp[arr_temp.length - 1])
+				if is_breakline(str_temp_2)
 					return arr_temp.join
 				end
 				str_temp_2 = ""
@@ -160,8 +150,7 @@ def searcher(bin_arr)
 		end
 	end
 
-	str = arr_temp.join
-	str
+	return arr_temp.join
 end
 
 def is_breakline(bin_str)
@@ -179,10 +168,10 @@ def main_decoder(img_search_path)
 end
 
 $start_position = 40
-$input_img_search_path = "Images/16x16.bmp"
-$input_text = "a"
+$input_img_search_path = "Images/speedtest2.bmp"
+$input_text = "dumheterdumdumdumfanfandavidsatandjaveldealerbuckshot"
 $output_img_search_path = "Images/test.bmp"
-$aggression = 3
+$aggression = 7
 $break_line = "01111111"
 
 #33 made not functioning img from smile.bmp
