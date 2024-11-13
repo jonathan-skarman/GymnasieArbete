@@ -168,10 +168,10 @@ def main_decoder(img_search_path)
 end
 
 $start_position = 40
-$input_img_search_path = "Images/speedtest2.bmp"
+$input_img_search_path = "Images/fourkfriedfatyoshi24.bmp"
 $input_text = "dumheterdumdumdumfanfandavidsatandjaveldealerbuckshot"
 $output_img_search_path = "Images/test.bmp"
-$aggression = 7
+$aggression = 1
 $break_line = "01111111"
 
 #33 made not functioning img from smile.bmp
@@ -196,3 +196,9 @@ puts mid_point - start
 
 puts "Läsa"
 puts ending - mid_point
+
+#4k:
+#2:30 min för skriva
+#3:10 min för läsa
+
+#ner från 1080p tog c.a 1h
