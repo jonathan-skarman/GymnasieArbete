@@ -167,10 +167,10 @@ def main_decoder(img_search_path)
 	bin_to_txt(searcher(hex_to_bin(img_to_hex(img_search_path))))
 end
 
-$start_position = 40
-$input_img_search_path = "Images/fourkfriedfatyoshi.bmp"
+$start_position = 70
+$input_img_search_path = "Untitled.bmp"
 $input_text = "dumheterdumdumdumfanfandavidsatandjaveldealerbuckshot"
-$output_img_search_path = "Images/test.bmp"
+$output_img_search_path = "test.bmp"
 $aggression = 5
 $break_line = "01111111"
 
