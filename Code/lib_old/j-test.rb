@@ -116,10 +116,10 @@ def hider(txt_bin, img_bin_arr, aggression)
 	img_bin_arr
 end
 
-def searcher(bin_arr)
+def searcher(bin_arr, start_position, aggression)
 	puts "Searching"
 
-	i = $start_position
+	i = start_position
 	str_temp = ""
 
 	j = 0
@@ -129,7 +129,7 @@ def searcher(bin_arr)
 
 
 	while i < bin_arr.length
-		str_temp += bin_arr[i][(0..($aggression-1))]
+		str_temp += bin_arr[i][(0..(aggression-1))]
 		i += 1
 		#p str_temp.length
 
@@ -168,10 +168,10 @@ def main_decoder(img_search_path)
 end
 
 $start_position = 70
-$input_img_search_path = "Untitled.bmp"
-$input_text = "dumheterdumdumdumfanfandavidsatandjaveldealerbuckshot"
+$input_img_search_path = "kolakakor3.bmp"
+$input_text = "dumheterdumdumdumfanfandavidsatandjaveldealerbuckshotdumheterdumdumdumfanfandavidsatandjaveldealerbuckshot"
 $output_img_search_path = "test.bmp"
-$aggression = 5
+$aggression = 8
 $break_line = "01111111"
 
 #33 made not functioning img from smile.bmp
@@ -184,13 +184,13 @@ $break_line = "01111111"
 start = Time.now
 
 main_hider($input_text, $input_img_search_path, $aggression, $output_img_search_path)#Agg(1-8)
+
 mid_point = Time.now
 
 p main_decoder($output_img_search_path)
 
-#bin_to_txt(txt_to_bin("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-
 ending = Time.now
+
 puts "Skriva"
 puts mid_point - start
 
