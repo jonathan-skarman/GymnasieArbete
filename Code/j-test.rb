@@ -167,11 +167,21 @@ def main_decoder(img_search_path)
 	bin_to_txt(searcher(hex_to_bin(img_to_hex(img_search_path))))
 end
 
+def random_letters()
+	i = 0
+	string = ""
+	while i < 100000
+		string += rand(1..100).to_s
+		i += 1
+	end
+	return string
+end
+
 $start_position = 40
-$input_img_search_path = "Images/fourkfriedfatyoshi.bmp"
-$input_text = "dumheterdumdumdumfanfandavidsatandjaveldealerbuckshot"
+$input_img_search_path = "Images/friedwinnie.bmp"
+$input_text = "Hejjagheterbamseochgilalrdunderhonung"
 $output_img_search_path = "Images/test.bmp"
-$aggression = 5
+$aggression = 8
 $break_line = "01111111"
 
 #33 made not functioning img from smile.bmp
