@@ -179,9 +179,9 @@ end
 
 $start_position = 40
 $input_img_search_path = "Images/friedwinnie.bmp"
-$input_text = random_letters()
+$input_text = "Hejjagheterbamseochgilalrdunderhonung"
 $output_img_search_path = "Images/test.bmp"
-$aggression = 4
+$aggression = 8
 $break_line = "01111111"
 
 #33 made not functioning img from smile.bmp
