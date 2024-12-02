@@ -13,4 +13,4 @@ def encode(input_search_path, input_text_search_path, aggression, output_search_
   hex_to_img(hex_str, output_search_path)
 end
 
-encode($input_img_search_path, $input_text_search_path, $aggression, $output_img_search_path)
+#encode($input_img_search_path, $input_text_search_path, $aggression, $output_img_search_path)
