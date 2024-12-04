@@ -1,7 +1,7 @@
 require_relative 'encode.rb'
 
-i=1
-while i <= 8
+i=8
+while i >= 4
   if i == 5
     $start_position = 125-(i*7) #4 blue
   else
@@ -9,5 +9,5 @@ while i <= 8
   end
 
   encode($input_img_search_path, $input_text_search_path, i, "output#{i}.bmp")
-  i +=  1
+  i -=  1
 end
