@@ -2,7 +2,7 @@
 def txt_to_bin(str)
 	p "string to bin"
 	arr = str.bytes
-	arr.each_index {|index| arr[index] = "0" + (arr[index].to_i).to_s(2)}
+	arr.each_index {|index| arr[index] = (arr[index].to_i).to_s(2).rjust(8, '0')}
 	str = ""
 	arr.each {|el| str += el}
 	str
