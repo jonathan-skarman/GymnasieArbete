@@ -46,15 +46,18 @@ end
 
 #Img to hex_str
 def img_to_hex(search_path)
+	p "img to hex"
 	read = File.read(search_path)
 end
 
 def bin_arr_to_bin_str(bin_arr)
+	p "bin_arr to bin_str"
 	bin_str = bin_arr.join
 end
 
 #Bin_str to text_str
 def bin_arr_to_txt(bin_arr)
+	p "bin to txt"
 	s = bin_arr
 	output = ""
 	(0..s.length-8).step(8) do |i|
@@ -101,7 +104,7 @@ end
 
 #searches for the hidden text in the image
 def searcher(bin_arr, start_position, aggression)
-	puts "Searching"
+	p "Searching"
 
 	i = start_position
 	str_temp = ""
@@ -141,15 +144,18 @@ end
 
 
 def txt_file_to_txt_str(input_search_path)
+	p "txt_file to txt_str"
   read = File.read(input_search_path)
 end
 
 def txt_str_to_txt_file(txt_str, output_search_path)
+	p "txt_str to txt_file"
   write = File.open(output_search_path, 'w')
   write.puts(txt_str)
   write.close
 end
 
 def remove_breakline(txt_str, break_line)
+	p "removing breakline"
 	txt_str = txt_str.gsub(break_line, "")
 end

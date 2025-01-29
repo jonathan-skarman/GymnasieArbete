@@ -5,17 +5,17 @@ $break_line = "01111111"
 
 
 #How many bits in each byte are changed
-$aggression = 7
-
+$aggression = 1
 
 
 #variables for encoding
 #relative search path to the original image file
 $input_img_search_path = "input.bmp"
+
 #wether the input text will be the string below or from the file
-$input_via_file = false
+$input_via_file = false # false means the input_text will be used, true means the file in input_text_search_path will be used
 #textstring that will be encoded
-$input_text = "exampleString"
+$input_text = "String example"
 #relative search path to an input text file
 $input_text_search_path = "input.txt"
 
